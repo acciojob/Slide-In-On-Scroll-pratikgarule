@@ -57,6 +57,25 @@
         if (callNow) func.apply(context, args);
       };
     }
+	    //adding the images load
+      const imgTargets = document.querySelectorAll(".slide-in");
+
+      const loadImg = function (entries, observer) {
+        const [entry] = entries;
+        if (!entry.isIntersecting) return;
+
+        entry.target.classList.add("active");
+        observer.unobserve(entry.target);
+      };
+
+      const imgObserver = new IntersectionObserver(loadImg, {
+        root: null,
+        threshold: 0.5,
+      });
+
+      imgTargets.forEach((img) => {
+        return imgObserver.observe(img);
+      });
 
   </script>
 
